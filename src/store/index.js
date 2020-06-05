@@ -8,10 +8,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {},
+    blargs: [],
+    activeBlarg: {},
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
+    },
+    setBlargs(state, blargs) {
+      state.blargs = blargs;
+    },
+    setActiveBlarg(state, blarg) {
+      state.activeBlarg = blarg;
     },
   },
   actions: {
@@ -25,6 +33,23 @@ export default new Vuex.Store({
       try {
         let res = await api.get("profile");
         commit("setProfile", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getAllBlargs({ commit, dispatch }) {
+      try {
+        let res = await api.get("blogs");
+        commit("setBlargs", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getBlargDetails({ commit, dispatch }, id) {
+      try {
+        let res = await api.get("blogs/" + id);
+        commit("setActiveBlarg", res.data);
+        console.log(this.state.activeBlarg);
       } catch (error) {
         console.error(error);
       }
