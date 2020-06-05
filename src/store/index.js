@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { Store } from "vuex";
 import router from "../router";
 import { api } from "./AxiosStore";
 
@@ -10,6 +10,7 @@ export default new Vuex.Store({
     profile: {},
     blargs: [],
     activeBlarg: {},
+    comments: [],
   },
   mutations: {
     setProfile(state, profile) {
@@ -20,6 +21,12 @@ export default new Vuex.Store({
     },
     setActiveBlarg(state, blarg) {
       state.activeBlarg = blarg;
+    },
+    addComment(state, comment) {
+      state.comments.push(comment);
+    },
+    setComments(state, comments) {
+      state.comments = comments;
     },
   },
   actions: {
@@ -50,6 +57,31 @@ export default new Vuex.Store({
         let res = await api.get("blogs/" + id);
         commit("setActiveBlarg", res.data);
         console.log(this.state.activeBlarg);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async createBlarg({ commit, dispatch }, blargDeetz) {
+      try {
+        let res = await api.post("blogs", blargDeetz);
+        dispatch("getAllBlargs");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getComments({ commit, dispatch }, id) {
+      try {
+        let res = await api.get("blogs/" + id);
+        commit("setComments", res.data.comments);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async createComment({ commit, dispatch }, commentDeetz) {
+      try {
+        let res = await api.post("comments", commentDeetz);
+        commit("addComment", res.data);
+        dispatch("getComments");
       } catch (error) {
         console.error(error);
       }

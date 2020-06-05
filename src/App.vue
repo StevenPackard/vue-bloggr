@@ -2,6 +2,13 @@
   <div id="app">
     <navbar />
     <router-view />
+    <!-- <footer class="container-fluid fixed-bottom bg-dark">
+      <div class="row">
+        <div class="col-12 text-center text-white">
+          <p>Made with Love</p>
+        </div>
+      </div>
+    </footer>-->
   </div>
 </template>
 

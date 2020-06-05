@@ -4,7 +4,7 @@
       <div class="row d-flex justify-content-center">
         <div class="col-7 d-flex align-items-center justify-content-center blarg-bg border my-2">
           <h3 class="mx-2">{{blarg.title}}</h3>
-          <p class="mx-2">~ {{blarg.creatorEmail}}</p>
+          <h5 class="mx-2">~ {{blarg.creatorEmail}}</h5>
         </div>
       </div>
     </router-link>
