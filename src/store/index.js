@@ -69,6 +69,14 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async deleteBlarg({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("blogs/" + id);
+        router.push({ name: "Home" });
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getComments({ commit, dispatch }, id) {
       try {
         let res = await api.get("blogs/" + id);
