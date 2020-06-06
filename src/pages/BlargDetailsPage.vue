@@ -48,6 +48,7 @@ export default {
   mounted() {
     this.$store.dispatch("getBlargDetails", this.$route.params.id);
     this.$store.dispatch("getComments", this.$route.params.id);
+    this.$store.dispatch("getProfile");
   },
 
   data() {

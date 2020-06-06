@@ -28,6 +28,9 @@ export default new Vuex.Store({
     setComments(state, comments) {
       state.comments = comments;
     },
+    deleteComment(state, id) {
+      state.comments = state.comments.filter((c) => c.id != id);
+    },
   },
   actions: {
     setBearer({}, bearer) {
@@ -89,6 +92,15 @@ export default new Vuex.Store({
       try {
         let res = await api.post("comments", commentDeetz);
         commit("addComment", res.data);
+        dispatch("getComments");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteComment({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("comments/" + id);
+        commit("deleteComment", id);
         dispatch("getComments");
       } catch (error) {
         console.error(error);

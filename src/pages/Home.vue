@@ -48,6 +48,7 @@ export default {
 
   mounted() {
     this.$store.dispatch("getAllBlargs");
+    this.$store.dispatch("getProfile");
   },
 
   data() {
