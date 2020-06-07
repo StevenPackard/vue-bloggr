@@ -1,6 +1,6 @@
 <template>
   <div
-    class="profile-comments-component col-9 border text-center my-2 blarg-body-bg"
+    class="profile-comments-component col-9 border text-center my-2 blarg-body-bg comment-wide"
   >
     <h3>"{{ comment.body }}"</h3>
     <div class="row d-flex justify-content-center mb-2">
@@ -56,5 +56,8 @@ export default {
 }
 .blarg-body-bg {
   background-color: rgb(128, 140, 138);
+}
+.comment-wide {
+  min-width: 40vh;
 }
 </style>
