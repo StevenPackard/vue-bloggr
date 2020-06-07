@@ -1,7 +1,6 @@
 <template>
-  <div class="profile-blargs-component col-12 border blarg-bg text-center my-2">
+  <div class="profile-blargs-component col-12 border blarg-bg text-center my-2 blarg-wide">
     <h3>{{blarg.title}}</h3>
-    <h5>{{blarg.creatorEmail}}</h5>
     <div class="row d-flex justify-content-center">
       <router-link :to="{ name: 'BlargDetails', params: { id: blarg.id }}">
         <button class="btn btn-primary mx-2">Go to Blarg</button>
@@ -28,5 +27,8 @@ export default {
 <style scoped>
 .blarg-bg {
   background-color: rgb(65, 184, 131);
+}
+.blarg-wide {
+  min-width: 30vh;
 }
 </style>

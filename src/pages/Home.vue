@@ -14,30 +14,44 @@
       <div class="col-12 d-flex justify-content-center my-5" v-if="blargForm">
         <form class="form-inline" @submit.prevent="createBlarg">
           <div class="form-group">
+            <label for="input1" class="text-white">Title:</label>
             <input
               type="text"
               name="title"
               id="title"
-              class="form-control mx-3"
+              class="form-control ml-1 mr-3"
               placeholder="Title..."
               aria-describedby="helpId"
               v-model="newBlarg.title"
             />
-            <input
+            <!-- <input
               type="text"
               name="body"
               id="body"
-              class="form-control mx-3"
+              class="form-control mx-3 text-box"
               placeholder="Type your blarg here..."
               aria-describedby="helpId"
               v-model="newBlarg.body"
-            />
+            />-->
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1" class="text-white">Blarg Body:</label>
+              <textarea
+                class="form-control ml-1 mr-3"
+                v-model="newBlarg.body"
+                id="exampleFormControlTextarea1"
+                rows="3"
+              ></textarea>
+            </div>
             <button typ="submit" class="btn success-button">Post</button>
           </div>
         </form>
       </div>
     </div>
-    <blarg v-for="blarg in blargs" :key="blarg.id" :blarg="blarg" />
+    <div class="row">
+      <div class="col">
+        <blarg v-for="blarg in blargs" :key="blarg.id" :blarg="blarg" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -85,5 +99,9 @@ export default {
 }
 .success-button {
   background-color: rgb(65, 184, 131);
+}
+.text-box {
+  overflow-y: auto;
+  height: 10vh;
 }
 </style>

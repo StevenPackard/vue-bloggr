@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-comments-component col-9 border blarg-bg text-center my-2">
+  <div class="profile-comments-component col-9 border blarg-body-bg text-center my-2">
     <h3>"{{comment.body}}"</h3>
     <div class="row d-flex justify-content-center">
       <router-link :to="{ name: 'BlargDetails', params: { id: comment.blogId }}">
@@ -32,5 +32,8 @@ export default {
 <style scoped>
 .blarg-bg {
   background-color: rgb(65, 184, 131);
+}
+.blarg-body-bg {
+  background-color: rgb(128, 140, 138);
 }
 </style>

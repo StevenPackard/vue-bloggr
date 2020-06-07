@@ -5,8 +5,10 @@
         <h4>Title: {{blarg.title}}</h4>
         <h5>Creator: {{blarg.creatorEmail}}</h5>
       </div>
-      <div class="col-7 text-center blarg-bg border mt-2">
-        <h2>{{blarg.body}}</h2>
+      <div
+        class="col-7 text-center blarg-body-bg border mt-2 blarg-tall d-flex align-items-center justify-content-center rounded-blarg"
+      >
+        <h2>"{{blarg.body}}"</h2>
       </div>
       <div class="col-7 d-flex justify-content-center my-2">
         <button class="btn btn-danger mx-2" v-if="isCreator" @click="deleteBlarg">Delete Blarg</button>
@@ -16,7 +18,7 @@
           @click="editForm = !editForm"
         >Edit Blarg</button>
       </div>
-      <div class="col-7 my-3" v-if="editForm">
+      <div class="col-7 d-flex justify-content-center my-3" v-if="editForm">
         <form class="form-inline" @submit.prevent="editBlarg">
           <div class="form-group">
             <input
@@ -26,7 +28,7 @@
               class="form-control mx-3"
               placeholder="Edit Title..."
               aria-describedby="helpId"
-              v-model="newBlarg.title"
+              v-model="editBlarg.title"
             />
             <input
               type="text"
@@ -35,7 +37,7 @@
               class="form-control mx-3"
               placeholder="Edit Blarg..."
               aria-describedby="helpId"
-              v-model="newBlarg.body"
+              v-model="editBlarg.body"
             />
             <button typ="submit" class="btn success-button">Edit</button>
           </div>
@@ -50,7 +52,7 @@
         >Show {{comments.length}} Comments!</button>
       </div>
     </div>
-    <div class="row d-flex justify-content-center" v-if="commentForm">
+    <div class="row d-flex justify-content-center mb-4" v-if="commentForm">
       <div class="col-7 d-flex justify-content-center">
         <form class="form-inline" @submit.prevent="createComment">
           <div class="form-group">
@@ -87,7 +89,7 @@ export default {
       newComment: {
         blogId: this.$route.params.id
       },
-      newBlarg: {},
+      editBlarg: {},
       commentForm: false,
       editForm: false
     };
@@ -136,5 +138,15 @@ export default {
 
 .success-button {
   background-color: rgb(65, 184, 131);
+}
+
+.blarg-tall {
+  min-height: 40vh;
+}
+.blarg-body-bg {
+  background-color: rgb(128, 140, 138);
+}
+.rounded-blarg {
+  border-radius: 5%;
 }
 </style>
