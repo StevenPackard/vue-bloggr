@@ -2,21 +2,29 @@
   <div class="blarg-details container">
     <div class="row d-flex justify-content-center mt-3">
       <div class="col-6 text-center blarg-bg">
-        <h4>Title: {{blarg.title}}</h4>
-        <h5>Creator: {{blarg.creatorEmail}}</h5>
+        <h4>Title: {{ blarg.title }}</h4>
+        <h5>Creator: {{ blarg.creatorEmail }}</h5>
       </div>
       <div
         class="col-7 text-center blarg-body-bg border mt-2 blarg-tall d-flex align-items-center justify-content-center rounded-blarg"
       >
-        <h2>"{{blarg.body}}"</h2>
+        <h2>"{{ blarg.body }}"</h2>
       </div>
       <div class="col-7 d-flex justify-content-center my-2">
-        <button class="btn btn-danger mx-2" v-if="isCreator" @click="deleteBlarg">Delete Blarg</button>
+        <button
+          class="btn btn-danger mx-2"
+          v-if="isCreator"
+          @click="showDeleteAlert"
+        >
+          Delete Blarg
+        </button>
         <button
           class="btn success-button mx-2"
           v-if="isCreator"
           @click="editForm = !editForm"
-        >Edit Blarg</button>
+        >
+          Edit Blarg
+        </button>
       </div>
       <div class="col-7 d-flex justify-content-center my-3" v-if="editForm">
         <form class="form-inline" @submit.prevent="editBlarg">
@@ -46,10 +54,9 @@
     </div>
     <div class="row d-flex justify-content-center mb-3">
       <div class="col-6 d-flex justify-content-center">
-        <button
-          class="btn success-button"
-          @click="commentForm = !commentForm"
-        >Show {{comments.length}} Comments!</button>
+        <button class="btn success-button" @click="commentForm = !commentForm">
+          Show {{ comments.length }} Comments!
+        </button>
       </div>
     </div>
     <div class="row d-flex justify-content-center mb-4" v-if="commentForm">
@@ -69,11 +76,14 @@
           <button type="submit" class="btn success-button mx-2">Submit</button>
         </form>
       </div>
-      <comment v-for="comment in comments" :key="comment.blogId" :comment="comment" />
+      <comment
+        v-for="comment in comments"
+        :key="comment.blogId"
+        :comment="comment"
+      />
     </div>
   </div>
 </template>
-
 
 <script>
 import Comment from "@/components/CommentsComponent.vue";
@@ -87,11 +97,11 @@ export default {
   data() {
     return {
       newComment: {
-        blogId: this.$route.params.id
+        blogId: this.$route.params.id,
       },
       editBlarg: {},
       commentForm: false,
-      editForm: false
+      editForm: false,
     };
   },
   computed: {
@@ -103,7 +113,7 @@ export default {
     },
     isCreator() {
       return this.$store.state.profile.email == this.blarg.creatorEmail;
-    }
+    },
   },
   methods: {
     beforeRouteLeave(to, from, next) {
@@ -113,7 +123,7 @@ export default {
     createComment() {
       this.$store.dispatch("createComment", { ...this.newComment });
       this.newComment = {
-        blogId: this.$route.params.id
+        blogId: this.$route.params.id,
       };
     },
     deleteBlarg() {
@@ -122,14 +132,31 @@ export default {
     editBlarg() {
       this.$store.dispatch("editBlarg", this.$route.params.id, { ...newBlarg });
       this.newBlarg = {};
-    }
+    },
+    showDeleteAlert() {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this blarg!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your blarg has been deleted!", {
+            icon: "success",
+          });
+          this.deleteBlarg();
+        } else {
+          swal("Your blarg is safe!");
+        }
+      });
+    },
   },
   components: {
-    Comment
-  }
+    Comment,
+  },
 };
 </script>
-
 
 <style scoped>
 .blarg-bg {

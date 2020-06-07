@@ -9,10 +9,12 @@
           class="btn success-button"
           v-if="$auth.isAuthenticated"
           @click="blargForm = !blargForm"
-        >Create a Blarg!</button>
+        >
+          Create a Blarg!
+        </button>
       </div>
       <div class="col-12 d-flex justify-content-center my-5" v-if="blargForm">
-        <form class="form-inline" @submit.prevent="createBlarg">
+        <form class="form-inline" @submit.prevent="showCreateAlert">
           <div class="form-group">
             <label for="input1" class="text-white">Title:</label>
             <input
@@ -34,7 +36,9 @@
               v-model="newBlarg.body"
             />-->
             <div class="form-group">
-              <label for="exampleFormControlTextarea1" class="text-white">Blarg Body:</label>
+              <label for="exampleFormControlTextarea1" class="text-white"
+                >Blarg Body:</label
+              >
               <textarea
                 class="form-control ml-1 mr-3"
                 v-model="newBlarg.body"
@@ -67,7 +71,7 @@ export default {
   data() {
     return {
       blargForm: false,
-      newBlarg: {}
+      newBlarg: {},
     };
   },
 
@@ -77,19 +81,34 @@ export default {
     },
     profile() {
       return this.$store.state.profile;
-    }
+    },
   },
 
   methods: {
     createBlarg() {
       this.$store.dispatch("createBlarg", { ...this.newBlarg });
       this.newBlarg = {};
-    }
+    },
+    showCreateAlert() {
+      swal({
+        title: "Are you sure?",
+        text: "Once you post this Blarg, everyone will be able to see it!",
+        icon: "info",
+        buttons: true,
+      }).then((willCreate) => {
+        if (willCreate) {
+          swal("Your blarg has been posted", {
+            icon: "success",
+          });
+          this.createBlarg();
+        }
+      });
+    },
   },
 
   components: {
-    Blarg
-  }
+    Blarg,
+  },
 };
 </script>
 
