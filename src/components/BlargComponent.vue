@@ -1,5 +1,5 @@
 <template>
-  <div class="blarg-component container-fluid">
+  <div class="blarg-component">
     <router-link :to="{ name: 'BlargDetails', params: { id: blarg._id }}">
       <div class="row d-flex justify-content-center">
         <div class="col-7 d-flex align-items-center justify-content-center blarg-bg border my-2">

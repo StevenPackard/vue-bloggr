@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="no-scroll">
     <navbar />
     <router-view />
     <!-- <footer class="container-fluid fixed-bottom bg-dark">
@@ -22,6 +22,7 @@ export default {
     await onAuth();
     if (this.$auth.isAuthenticated) {
       setBearer(this.$auth.bearer);
+      this.$store.dispatch("getProfile");
       //NOTE if you want to do something everytime the user logs in, do so here
     }
   },
@@ -37,4 +38,9 @@ export default {
 </style>
 <style lang="css">
 @import "./assets/style.css";
+</style>
+<style>
+.no-scroll {
+  overflow-x: hidden;
+}
 </style>

@@ -1,21 +1,64 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ profile.name }}</h1>
-    <img class="rounded" :src="profile.picture" alt />
-    <p>{{ profile.email }}</p>
+  <div class="about">
+    <div class="row d-flex justify-content-center">
+      <div class="col-7 d-flex flex-column align-items-center">
+        <h1>Welcome {{ profile.name }}</h1>
+        <img class="rounded" :src="profile.picture" alt />
+        <p>{{ profile.email }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 d-flex flex-column align-items-center">
+        <button
+          class="btn success-button button-shrink"
+          @click="blargShow = !blargShow"
+        >Show your Blargs</button>
+        <div class="row d-flex justify-content-center" v-if="blargShow">
+          <blarg v-for="blarg in myBlargs" :key="blarg.id" :blarg="blarg" />
+        </div>
+      </div>
+      <div class="col-6 d-flex flex-column align-items-center">
+        <button
+          class="btn success-button button-shrink"
+          @click="commentShow = !commentShow"
+        >Show your Comments</button>
+        <div class="row d-flex justify-content-center my-2" v-if="commentShow">
+          <comment v-for="comment in myComments" :key="comment.id" :comment="comment" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Blarg from "@/components/ProfileBlargsComponent.vue";
+import Comment from "@/components/ProfileCommentsComponent.vue";
 export default {
   name: "Profile",
+  data() {
+    return {
+      blargShow: false,
+      commentShow: false
+    };
+  },
   mounted() {
-    this.$store.dispatch("getProfile");
+    this.$store.dispatch("getMyBlargs");
+    this.$store.dispatch("getMyComments");
   },
   computed: {
     profile() {
       return this.$store.state.profile;
+    },
+    myBlargs() {
+      return this.$store.state.myBlargs;
+    },
+    myComments() {
+      return this.$store.state.myComments;
     }
+  },
+  components: {
+    Blarg,
+    Comment
   }
 };
 </script>
@@ -23,5 +66,12 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+.success-button {
+  background-color: rgb(65, 184, 131);
+}
+
+.button-shrink {
+  width: 40%;
 }
 </style>

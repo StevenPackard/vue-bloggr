@@ -11,6 +11,8 @@ export default new Vuex.Store({
     blargs: [],
     activeBlarg: {},
     comments: [],
+    myBlargs: [],
+    myComments: [],
   },
   mutations: {
     setProfile(state, profile) {
@@ -30,6 +32,12 @@ export default new Vuex.Store({
     },
     deleteComment(state, id) {
       state.comments = state.comments.filter((c) => c.id != id);
+    },
+    setMyBlargs(state, blargs) {
+      state.myBlargs = blargs;
+    },
+    setMyComments(state, comments) {
+      state.myComments = comments;
     },
   },
   actions: {
@@ -59,7 +67,6 @@ export default new Vuex.Store({
       try {
         let res = await api.get("blogs/" + id);
         commit("setActiveBlarg", res.data);
-        console.log(this.state.activeBlarg);
       } catch (error) {
         console.error(error);
       }
@@ -76,6 +83,14 @@ export default new Vuex.Store({
       try {
         let res = await api.delete("blogs/" + id);
         router.push({ name: "Home" });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async editBlarg({ commit, dispatch }, id, blargDeetz) {
+      try {
+        let res = await api.put("blogs/" + id, blargDeetz);
+        dispatch("getBlargDetails");
       } catch (error) {
         console.error(error);
       }
@@ -102,6 +117,22 @@ export default new Vuex.Store({
         let res = await api.delete("comments/" + id);
         commit("deleteComment", id);
         dispatch("getComments");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getMyBlargs({ commit, dispatch }) {
+      try {
+        let res = await api.get("profile/blogs");
+        commit("setMyBlargs", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getMyComments({ commit, dispatch }) {
+      try {
+        let res = await api.get("profile/comments");
+        commit("setMyComments", res.data);
       } catch (error) {
         console.error(error);
       }

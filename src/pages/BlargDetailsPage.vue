@@ -1,16 +1,48 @@
 <template>
   <div class="blarg-details container">
-    <div class="row d-flex justify-content-center my-3">
+    <div class="row d-flex justify-content-center mt-3">
       <div class="col-6 text-center blarg-bg">
         <h4>Title: {{blarg.title}}</h4>
         <h5>Creator: {{blarg.creatorEmail}}</h5>
-        <h2>Body: "{{blarg.body}}"</h2>
       </div>
-      <div class="col-7 d-flex justify-content-center mt-2">
-        <button class="btn btn-danger" v-if="isCreator" @click="deleteBlarg">Delete Blarg</button>
+      <div class="col-7 text-center blarg-bg border mt-2">
+        <h2>{{blarg.body}}</h2>
+      </div>
+      <div class="col-7 d-flex justify-content-center my-2">
+        <button class="btn btn-danger mx-2" v-if="isCreator" @click="deleteBlarg">Delete Blarg</button>
+        <button
+          class="btn success-button mx-2"
+          v-if="isCreator"
+          @click="editForm = !editForm"
+        >Edit Blarg</button>
+      </div>
+      <div class="col-7 my-3" v-if="editForm">
+        <form class="form-inline" @submit.prevent="editBlarg">
+          <div class="form-group">
+            <input
+              type="text"
+              name="title"
+              id="title"
+              class="form-control mx-3"
+              placeholder="Edit Title..."
+              aria-describedby="helpId"
+              v-model="newBlarg.title"
+            />
+            <input
+              type="text"
+              name="body"
+              id="body"
+              class="form-control mx-3"
+              placeholder="Edit Blarg..."
+              aria-describedby="helpId"
+              v-model="newBlarg.body"
+            />
+            <button typ="submit" class="btn success-button">Edit</button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="row d-flex justify-content-center my-2">
+    <div class="row d-flex justify-content-center mb-3">
       <div class="col-6 d-flex justify-content-center">
         <button
           class="btn success-button"
@@ -48,7 +80,6 @@ export default {
   mounted() {
     this.$store.dispatch("getBlargDetails", this.$route.params.id);
     this.$store.dispatch("getComments", this.$route.params.id);
-    this.$store.dispatch("getProfile");
   },
 
   data() {
@@ -56,7 +87,9 @@ export default {
       newComment: {
         blogId: this.$route.params.id
       },
-      commentForm: false
+      newBlarg: {},
+      commentForm: false,
+      editForm: false
     };
   },
   computed: {
@@ -83,6 +116,10 @@ export default {
     },
     deleteBlarg() {
       this.$store.dispatch("deleteBlarg", this.$route.params.id);
+    },
+    editBlarg() {
+      this.$store.dispatch("editBlarg", this.$route.params.id, { ...newBlarg });
+      this.newBlarg = {};
     }
   },
   components: {

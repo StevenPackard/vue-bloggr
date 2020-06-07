@@ -48,7 +48,6 @@ export default {
 
   mounted() {
     this.$store.dispatch("getAllBlargs");
-    this.$store.dispatch("getProfile");
   },
 
   data() {
@@ -61,6 +60,9 @@ export default {
   computed: {
     blargs() {
       return this.$store.state.blargs;
+    },
+    profile() {
+      return this.$store.state.profile;
     }
   },
 
