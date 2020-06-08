@@ -2,16 +2,14 @@
   <div class="home container">
     <div class="row d-flex justify-content-center my-3">
       <div class="col-7 text-center text-white mb-2">
-        <h1>Welcome To Blarggr</h1>
+        <h1 class="welcome-shadow">Welcome To Blarggr</h1>
       </div>
       <div class="col-7 d-flex justify-content-center">
         <button
           class="btn success-button"
           v-if="$auth.isAuthenticated"
           @click="blargForm = !blargForm"
-        >
-          Create a Blarg!
-        </button>
+        >Create a Blarg!</button>
       </div>
       <div class="col-12 d-flex justify-content-center my-5" v-if="blargForm">
         <form class="form-inline" @submit.prevent="showCreateAlert">
@@ -36,9 +34,7 @@
               v-model="newBlarg.body"
             />-->
             <div class="form-group">
-              <label for="exampleFormControlTextarea1" class="text-white"
-                >Blarg Body:</label
-              >
+              <label for="exampleFormControlTextarea1" class="text-white">Blarg Body:</label>
               <textarea
                 class="form-control ml-1 mr-3"
                 v-model="newBlarg.body"
@@ -71,7 +67,7 @@ export default {
   data() {
     return {
       blargForm: false,
-      newBlarg: {},
+      newBlarg: {}
     };
   },
 
@@ -81,7 +77,7 @@ export default {
     },
     profile() {
       return this.$store.state.profile;
-    },
+    }
   },
 
   methods: {
@@ -94,21 +90,21 @@ export default {
         title: "Are you sure?",
         text: "Once you post this Blarg, everyone will be able to see it!",
         icon: "info",
-        buttons: true,
-      }).then((willCreate) => {
+        buttons: true
+      }).then(willCreate => {
         if (willCreate) {
           swal("Your blarg has been posted", {
-            icon: "success",
+            icon: "success"
           });
           this.createBlarg();
         }
       });
-    },
+    }
   },
 
   components: {
-    Blarg,
-  },
+    Blarg
+  }
 };
 </script>
 
@@ -122,5 +118,8 @@ export default {
 .text-box {
   overflow-y: auto;
   height: 10vh;
+}
+.welcome-shadow {
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
 }
 </style>

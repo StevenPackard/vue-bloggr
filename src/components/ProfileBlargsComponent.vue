@@ -1,6 +1,6 @@
 <template>
   <div
-    class="profile-blargs-component col-8 border blarg-bg text-center my-2 blarg-wide blarg-shadow"
+    class="profile-blargs-component col-9 border blarg-bg text-center my-2 blarg-wide blarg-shadow"
   >
     <h3>{{ blarg.title }}</h3>
     <div class="row d-flex justify-content-center">
@@ -29,9 +29,9 @@ export default {
   background-color: rgb(65, 184, 131);
 }
 .blarg-wide {
-  width: 50vh;
+  width: 55vh;
 }
 .blarg-shadow {
-  box-shadow: 3px 3px;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 </style>

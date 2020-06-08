@@ -2,7 +2,7 @@
   <div class="about">
     <div class="row d-flex justify-content-center">
       <div class="col-7 d-flex flex-column align-items-center text-light">
-        <h1>Welcome {{ profile.name }}</h1>
+        <h1 class="welcome-shadow">Welcome {{ profile.name }}</h1>
         <img class="rounded" :src="profile.picture" alt />
         <p>{{ profile.email }}</p>
       </div>
@@ -81,6 +81,9 @@ img {
   width: 40%;
 }
 .blarg-shadow {
-  box-shadow: 3px 3px;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+}
+.welcome-shadow {
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
 }
 </style>

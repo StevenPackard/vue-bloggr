@@ -38,6 +38,6 @@ export default {
   min-height: 10vh;
 }
 .blarg-shadow {
-  box-shadow: 3px 3px;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 </style>
