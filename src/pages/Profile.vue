@@ -4,7 +4,7 @@
       <div
         class="col-6 d-flex flex-column align-items-center blarg-bg my-3 border profile-tall justify-content-center"
       >
-        <h1 class="welcome-shadow">Welcome {{ profile.name }}</h1>
+        <h1 class="welcome-shadow">Hello {{profile.name}}!</h1>
         <img class="rounded" :src="profile.picture" alt />
         <p>{{ profile.email }}</p>
       </div>
