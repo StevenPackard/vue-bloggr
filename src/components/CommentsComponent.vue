@@ -8,20 +8,12 @@
     </p>
     <div class="row d-flex justify-content-center">
       <div class="col-6 d-flex justify-content-center">
-        <button
-          class="btn btn-danger mb-1 mx-2"
-          v-if="isCreator"
-          @click="showDeleteComment"
-        >
-          Delete
-        </button>
+        <button class="btn btn-danger mb-1 mx-2" v-if="isCreator" @click="showDeleteComment">Delete</button>
         <button
           class="btn success-button mb-1 mx-2"
           v-if="isCreator"
           @click="editForm = !editForm"
-        >
-          Edit
-        </button>
+        >Edit</button>
       </div>
       <div class="col-12 d-flex justify-content-center mb-2" v-if="editForm">
         <form class="form-inline" @submit.prevent="sendEditComment">
@@ -50,13 +42,14 @@ export default {
       editForm: false,
       editComment: {
         id: this.comment.id,
-      },
+        blogId: this.comment.blogId
+      }
     };
   },
   computed: {
     isCreator() {
       return this.$store.state.profile.email == this.comment.creatorEmail;
-    },
+    }
   },
   methods: {
     showDeleteComment() {
@@ -65,11 +58,11 @@ export default {
         text: "Once deleted, you will not be able to recover this comment!",
         icon: "warning",
         buttons: true,
-        dangerMode: true,
-      }).then((willDelete) => {
+        dangerMode: true
+      }).then(willDelete => {
         if (willDelete) {
           swal("Your comment has been deleted!", {
-            icon: "success",
+            icon: "success"
           });
           this.deleteComment();
         } else {
@@ -84,11 +77,12 @@ export default {
       this.$store.dispatch("editComment", { ...this.editComment });
       this.editComment = {
         id: this.comment.id,
+        blogId: this.comment.blogId
       };
-    },
+    }
   },
   components: {},
-  props: ["comment"],
+  props: ["comment"]
 };
 </script>
 

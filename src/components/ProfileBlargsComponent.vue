@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="profile-blargs-component col-12 border blarg-bg text-center my-2 blarg-wide"
-  >
+  <div class="profile-blargs-component col-8 border blarg-bg text-center my-2 blarg-wide">
     <h3>{{ blarg.title }}</h3>
     <div class="row d-flex justify-content-center">
       <router-link :to="{ name: 'BlargDetails', params: { id: blarg.id } }">
@@ -20,7 +18,7 @@ export default {
   computed: {},
   methods: {},
   components: {},
-  props: ["blarg"],
+  props: ["blarg"]
 };
 </script>
 
@@ -29,6 +27,6 @@ export default {
   background-color: rgb(65, 184, 131);
 }
 .blarg-wide {
-  min-width: 50vh;
+  width: 50vh;
 }
 </style>

@@ -93,7 +93,7 @@ export default new Vuex.Store({
     async editBlarg({ commit, dispatch }, blargDeetz) {
       try {
         let res = await api.put("blogs/" + blargDeetz.id, blargDeetz);
-        router.push({ name: "Profile" });
+        dispatch("getBlargDetails", blargDeetz.id);
       } catch (error) {
         console.error(error);
       }
@@ -102,7 +102,7 @@ export default new Vuex.Store({
       try {
         let res = await api.get("blogs/" + id);
         commit("setComments", res.data.comments);
-        dispatch("getBlargDetails");
+        dispatch("getBlargDetails", id);
       } catch (error) {
         console.error(error);
       }
@@ -138,7 +138,7 @@ export default new Vuex.Store({
     async editComment({ commit, dispatch }, commentDeetz) {
       try {
         let res = await api.put("comments/" + commentDeetz.id, commentDeetz);
-        dispatch("getComments");
+        dispatch("getComments", commentDeetz.blogId);
       } catch (error) {
         console.error(error);
       }
