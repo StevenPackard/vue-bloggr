@@ -1,6 +1,6 @@
 <template>
   <div
-    class="comments-component col-7 blarg-body-bg border mt-3 text-center d-flex flex-column align-items-center"
+    class="comments-component col-7 blarg-body-bg border mt-3 text-center d-flex flex-column align-items-center blarg-shadow"
   >
     <h3>"{{ comment.body }}"</h3>
     <p>
@@ -95,5 +95,8 @@ export default {
 }
 .success-button {
   background-color: rgb(65, 184, 131);
+}
+.blarg-shadow {
+  box-shadow: 3px 3px;
 }
 </style>

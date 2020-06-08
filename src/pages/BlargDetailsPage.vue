@@ -1,12 +1,12 @@
 <template>
   <div class="blarg-details container">
     <div class="blarg-details-component row d-flex justify-content-center mt-2">
-      <div class="col-6 text-center blarg-bg">
+      <div class="col-6 text-center blarg-bg blarg-shadow">
         <h4>Title: {{ blarg.title }}</h4>
         <h5>Creator: {{ blarg.creatorEmail }}</h5>
       </div>
       <div
-        class="col-7 text-center blarg-body-bg border mt-2 blarg-tall d-flex align-items-center justify-content-center rounded-blarg"
+        class="col-7 text-center blarg-body-bg border mt-2 blarg-tall d-flex align-items-center justify-content-center rounded-blarg blarg-shadow"
       >
         <h2>"{{ blarg.body }}"</h2>
       </div>
@@ -170,5 +170,8 @@ export default {
 }
 .rounded-blarg {
   border-radius: 5%;
+}
+.blarg-shadow {
+  box-shadow: 3px 3px;
 }
 </style>

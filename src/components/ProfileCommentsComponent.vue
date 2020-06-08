@@ -1,12 +1,10 @@
 <template>
   <div
-    class="profile-comments-component col-9 border text-center my-2 blarg-body-bg comment-wide"
+    class="profile-comments-component col-9 border text-center my-2 blarg-body-bg comment-wide blarg-shadow"
   >
     <h3>"{{ comment.body }}"</h3>
     <div class="row d-flex justify-content-center mb-2">
-      <router-link
-        :to="{ name: 'BlargDetails', params: { id: comment.blogId } }"
-      >
+      <router-link :to="{ name: 'BlargDetails', params: { id: comment.blogId } }">
         <button class="btn btn-primary mx-2">Go to Blarg</button>
       </router-link>
       <button class="btn btn-danger" @click="showDeleteComment">Delete</button>
@@ -29,11 +27,11 @@ export default {
         text: "Once deleted, you will not be able to recover this comment!",
         icon: "warning",
         buttons: true,
-        dangerMode: true,
-      }).then((willDelete) => {
+        dangerMode: true
+      }).then(willDelete => {
         if (willDelete) {
           swal("Your comment has been deleted!", {
-            icon: "success",
+            icon: "success"
           });
           this.deleteComment();
         } else {
@@ -43,10 +41,10 @@ export default {
     },
     deleteComment() {
       this.$store.dispatch("deleteProfileComment", this.comment.id);
-    },
+    }
   },
   components: {},
-  props: ["comment"],
+  props: ["comment"]
 };
 </script>
 
@@ -59,5 +57,8 @@ export default {
 }
 .comment-wide {
   min-width: 40vh;
+}
+.blarg-shadow {
+  box-shadow: 3px 3px;
 }
 </style>

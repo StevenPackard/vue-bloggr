@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'BlargDetails', params: { id: blarg._id }}">
       <div class="row d-flex justify-content-center">
         <div
-          class="col-8 d-flex align-items-center justify-content-center blarg-bg border my-2 blarg-short"
+          class="col-8 d-flex align-items-center justify-content-center blarg-bg border my-2 blarg-short blarg-shadow"
         >
           <h3 class="mx-2">
             <b>{{blarg.title}}</b>
@@ -36,5 +36,8 @@ export default {
 }
 .blarg-short {
   min-height: 10vh;
+}
+.blarg-shadow {
+  box-shadow: 3px 3px;
 }
 </style>

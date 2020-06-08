@@ -12,9 +12,7 @@
         <button
           class="btn success-button button-shrink"
           @click="blargShow = !blargShow"
-        >
-          Show your Blargs
-        </button>
+        >Show your Blargs</button>
         <div class="row d-flex justify-content-center" v-if="blargShow">
           <blarg v-for="blarg in myBlargs" :key="blarg.id" :blarg="blarg" />
         </div>
@@ -23,15 +21,9 @@
         <button
           class="btn success-button button-shrink"
           @click="commentShow = !commentShow"
-        >
-          Show your Comments
-        </button>
+        >Show your Comments</button>
         <div class="row d-flex justify-content-center my-2" v-if="commentShow">
-          <comment
-            v-for="comment in myComments"
-            :key="comment.id"
-            :comment="comment"
-          />
+          <comment v-for="comment in myComments" :key="comment.id" :comment="comment" />
         </div>
       </div>
     </div>
@@ -46,7 +38,7 @@ export default {
   data() {
     return {
       blargShow: false,
-      commentShow: false,
+      commentShow: false
     };
   },
   mounted() {
@@ -62,18 +54,18 @@ export default {
     },
     myComments() {
       return this.$store.state.myComments;
-    },
+    }
   },
   methods: {
     beforeRouteLeave(to, from, next) {
       this.$store.commit("setMyComments", {});
       next();
-    },
+    }
   },
   components: {
     Blarg,
-    Comment,
-  },
+    Comment
+  }
 };
 </script>
 
@@ -87,5 +79,8 @@ img {
 
 .button-shrink {
   width: 40%;
+}
+.blarg-shadow {
+  box-shadow: 3px 3px;
 }
 </style>

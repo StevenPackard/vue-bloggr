@@ -1,5 +1,7 @@
 <template>
-  <div class="profile-blargs-component col-8 border blarg-bg text-center my-2 blarg-wide">
+  <div
+    class="profile-blargs-component col-8 border blarg-bg text-center my-2 blarg-wide blarg-shadow"
+  >
     <h3>{{ blarg.title }}</h3>
     <div class="row d-flex justify-content-center">
       <router-link :to="{ name: 'BlargDetails', params: { id: blarg.id } }">
@@ -28,5 +30,8 @@ export default {
 }
 .blarg-wide {
   width: 50vh;
+}
+.blarg-shadow {
+  box-shadow: 3px 3px;
 }
 </style>
