@@ -4,6 +4,7 @@
       <div class="col-6 text-center blarg-bg blarg-shadow">
         <h4>Title: {{ blarg.title }}</h4>
         <h5>Creator: {{ blarg.creatorEmail }}</h5>
+        <img class="small-pic rounded mb-2 border" :src="blarg.creator.picture" alt />
       </div>
       <div
         class="col-7 text-center blarg-body-bg border mt-2 blarg-tall d-flex align-items-center justify-content-center rounded-blarg blarg-shadow"
@@ -173,5 +174,8 @@ export default {
 }
 .blarg-shadow {
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+}
+.small-pic {
+  max-height: 70px;
 }
 </style>

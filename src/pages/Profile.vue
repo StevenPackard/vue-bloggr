@@ -1,7 +1,9 @@
 <template>
   <div class="about">
     <div class="row d-flex justify-content-center">
-      <div class="col-7 d-flex flex-column align-items-center text-light">
+      <div
+        class="col-6 d-flex flex-column align-items-center blarg-bg my-3 border profile-tall justify-content-center"
+      >
         <h1 class="welcome-shadow">Welcome {{ profile.name }}</h1>
         <img class="rounded" :src="profile.picture" alt />
         <p>{{ profile.email }}</p>
@@ -85,5 +87,11 @@ img {
 }
 .welcome-shadow {
   text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+}
+.blarg-bg {
+  background-color: rgb(65, 184, 131);
+}
+.profile-tall {
+  min-height: 30vh;
 }
 </style>
