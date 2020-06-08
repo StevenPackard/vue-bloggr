@@ -3,7 +3,8 @@
     <div class="row d-flex justify-content-center my-3">
       <div class="col-7 text-center text-white mb-2">
         <h1 class="welcome-shadow">Welcome To Blarggr</h1>
-        <p>Create a blarg or see what others are saying!</p>
+        <p v-if="!$auth.isAuthenticated">Log in to create a blarg or see what others are saying!</p>
+        <p v-if="$auth.isAuthenticated">Create a blarg or see what others are saying!</p>
       </div>
       <div class="col-7 d-flex justify-content-center">
         <button
